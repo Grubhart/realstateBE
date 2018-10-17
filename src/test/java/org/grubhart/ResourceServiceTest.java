@@ -25,4 +25,13 @@ public class ResourceServiceTest {
         assertEquals("G",row.getSpecialFlag());
     }
 
+    @Test
+    public void testSpecialFlagNotOddNeitherDivisibleBy3(){
+        ResourceService service = new ResourceService();
+        RealStateResultItem row= new RealStateResultItem();
+        row.setRowId(4);
+        service.setSpecialFlag(row);
+        assertEquals("X",row.getSpecialFlag());
+    }
+
 }

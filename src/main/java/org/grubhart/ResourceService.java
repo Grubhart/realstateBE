@@ -5,9 +5,10 @@ public class ResourceService {
     public void setSpecialFlag(RealStateResultItem row) {
         if(isOdd(row.getRowId()) && !isMultiple3(row.getRowId())){
             row.setSpecialFlag("Q");
-        }
-        if(isMultiple3(row.getRowId())){
+        }else if(isMultiple3(row.getRowId())){
             row.setSpecialFlag("G");
+        }else{
+            row.setSpecialFlag("X");
         }
     }
 
