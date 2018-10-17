@@ -1,4 +1,6 @@
-package org.grubhart;
+package org.grubhart.service;
+
+import org.grubhart.domain.RealStateResultItem;
 
 public class ResourceService {
 

@@ -1,4 +1,4 @@
-package org.grubhart;
+package org.grubhart.domain;
 
 public class RealStateResultItem {
 

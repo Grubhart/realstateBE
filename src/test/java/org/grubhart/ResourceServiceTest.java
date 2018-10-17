@@ -1,5 +1,7 @@
 package org.grubhart;
 
+import org.grubhart.domain.RealStateResultItem;
+import org.grubhart.service.ResourceService;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -17,7 +19,7 @@ public class ResourceServiceTest {
     }
 
     @Test
-    public void testSpecialFlagRowIdmultple3(){
+    public void testSpecialFlagRowIdOddAndDivisibleBy3(){
         ResourceService service = new ResourceService();
         RealStateResultItem row= new RealStateResultItem();
         row.setRowId(3);
@@ -26,7 +28,16 @@ public class ResourceServiceTest {
     }
 
     @Test
-    public void testSpecialFlagNotOddNeitherDivisibleBy3(){
+    public void testSpecialFlagRowIdEvenAndDivisibleBy3(){
+        ResourceService service = new ResourceService();
+        RealStateResultItem row= new RealStateResultItem();
+        row.setRowId(6);
+        service.setSpecialFlag(row);
+        assertEquals("G",row.getSpecialFlag());
+    }
+
+    @Test
+    public void testSpecialFlagRowIdNotOddNeitherDivisibleBy3(){
         ResourceService service = new ResourceService();
         RealStateResultItem row= new RealStateResultItem();
         row.setRowId(4);
