@@ -1,7 +1,10 @@
 package org.grubhart.service;
 
 import org.grubhart.domain.RealStateResultItem;
+import org.grubhart.domain.RealStateSearchResult;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ResourceService {
 
     public void setSpecialFlag(RealStateResultItem row) {
@@ -20,5 +23,9 @@ public class ResourceService {
 
     public boolean isOdd(int i) {
         return i % 2 == 1;
+    }
+
+    public RealStateSearchResult search(String address, String specialOffer) {
+        return new RealStateSearchResult();
     }
 }
