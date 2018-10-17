@@ -16,4 +16,13 @@ public class ResourceServiceTest {
         assertEquals("Q",row.getSpecialFlag());
     }
 
+    @Test
+    public void testSpecialFlagRowIdmultple3(){
+        ResourceService service = new ResourceService();
+        RealStateResultItem row= new RealStateResultItem();
+        row.setRowId(3);
+        service.setSpecialFlag(row);
+        assertEquals("G",row.getSpecialFlag());
+    }
+
 }
