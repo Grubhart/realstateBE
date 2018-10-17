@@ -12,12 +12,27 @@ public class RealStateResultItem {
 
     public RealStateResultItem(RealState realState) {
             this.realStateId=realState.getId();
-            this.address=realState.getAddress();
+            this.address=buildAdress(realState);
             if(realState.isSpecialOffer()){
                 this.specialOffer="Yes";
             }else{
                 this.specialOffer="No";
             }
+    }
+
+    private String buildAdress(RealState realState) {
+        StringBuffer address= new StringBuffer();
+        address.append(realState.getAddress())
+                .append(", ")
+                .append(realState.getCity())
+                .append(", ")
+                .append(realState.getState())
+                .append(", ")
+                .append(realState.getEstadoAbr())
+                .append(", ")
+                .append(realState.getZipCode());
+
+        return address.toString();
     }
 
     public void setRowId(int rowId) {
