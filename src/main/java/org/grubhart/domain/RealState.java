@@ -1,14 +1,24 @@
 package org.grubhart.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+
+@Entity
 public class RealState {
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
-    private String address;
-    private boolean specialOffer;
+
+    private String street_address;
+    private boolean special_offer;
     private String city;
-    private String estadoAbr;
-    private String state;
-    private String zipCode;
+    private String state_abr;
+    private String state_name;
+    private String zip_code;
 
 
     public int getId() {
@@ -18,21 +28,21 @@ public class RealState {
         this.id=id;
     }
 
-    public void setAddress(String address) {
-        this.address=address;
+    public void setStreet_address(String street_address) {
+        this.street_address = street_address;
     }
 
-    public void setSpecialOffer(boolean specialOffer) {
-        this.specialOffer=specialOffer;
+    public void setSpecial_offer(boolean special_offer) {
+        this.special_offer = special_offer;
     }
 
 
-    public String getAddress() {
-        return address;
+    public String getStreet_address() {
+        return street_address;
     }
 
-    public boolean isSpecialOffer() {
-        return specialOffer;
+    public boolean isSpecial_offer() {
+        return special_offer;
     }
 
     public void setCity(String city) {
@@ -43,27 +53,27 @@ public class RealState {
         return city;
     }
 
-    public void setEstadoAbr(String estadoAbr) {
-        this.estadoAbr = estadoAbr;
+    public void setState_abr(String state_abr) {
+        this.state_abr = state_abr;
     }
 
-    public String getEstadoAbr() {
-        return estadoAbr;
+    public String getState_abr() {
+        return state_abr;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setState_name(String state_name) {
+        this.state_name = state_name;
     }
 
-    public String getState() {
-        return state;
+    public String getState_name() {
+        return state_name;
     }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    public void setZip_code(String zip_code) {
+        this.zip_code = zip_code;
     }
 
-    public String getZipCode() {
-        return zipCode;
+    public String getZip_code() {
+        return zip_code;
     }
 }

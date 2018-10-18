@@ -63,4 +63,3 @@ fabric.properties
 
 .idea/
 db/mydb.tmp/
-src/main/resources/

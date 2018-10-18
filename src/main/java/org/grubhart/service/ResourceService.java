@@ -2,10 +2,15 @@ package org.grubhart.service;
 
 import org.grubhart.domain.RealStateResultItem;
 import org.grubhart.domain.RealStateSearchResult;
+import org.grubhart.repository.RealStateRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ResourceService {
+
+    @Autowired
+    private RealStateRepository realStateRepository;
 
     public void setSpecialFlag(RealStateResultItem row) {
         if(isOdd(row.getRowId()) && !isMultiple3(row.getRowId())){
@@ -26,6 +31,7 @@ public class ResourceService {
     }
 
     public RealStateSearchResult search(String address, String specialOffer) {
-        return new RealStateSearchResult();
+        RealStateSearchResult realStateSearchResult = new RealStateSearchResult(realStateRepository.findAll());
+        return realStateSearchResult;
     }
 }

@@ -16,7 +16,7 @@ public class RealStateController {
 
     @RequestMapping("/search")
     public RealStateSearchResult search(@RequestParam(value="address") String address, @RequestParam(value = "specialOffer") String specialOffer) {
-        //return resourceService.search(address,specialOffer);
-        return null;
+        return resourceService.search(address,specialOffer);
+
     }
 }
