@@ -33,12 +33,13 @@ public class ResourceService {
 
     public RealStateSearchResult search(String address, String specialOffer) {
 
+
         boolean offer= new Boolean(specialOffer);
 
         if(offer)
-            return buildRealStateSearchResult(realStateRepository.findSpecialOffer("%"+address+"%"));
+            return buildRealStateSearchResult(realStateRepository.findSpecialOffer("%"+address.trim()+"%"));
         else
-            return buildRealStateSearchResult(realStateRepository.findByStateNameContainingOrStateAbrContainingOrStreetAddressContainingOrCityContainingOrZipCodeContaining(address,address,address,address,address));
+            return buildRealStateSearchResult(realStateRepository.findByStateNameContainingOrStateAbrContainingOrStreetAddressContainingOrCityContainingOrZipCodeContaining(address.trim(),address.trim(),address.trim(),address.trim(),address.trim()));
 
 
     }
