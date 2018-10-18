@@ -13,12 +13,12 @@ public class RealState {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
 
-    private String street_address;
-    private boolean special_offer;
+    private String streetAddress;
+    private boolean specialOffer;
     private String city;
-    private String state_abr;
-    private String state_name;
-    private String zip_code;
+    private String stateAbr;
+    private String stateName;
+    private String zipCode;
 
 
     public int getId() {
@@ -28,52 +28,45 @@ public class RealState {
         this.id=id;
     }
 
-    public void setStreet_address(String street_address) {
-        this.street_address = street_address;
+    public void setStreetAddress(String street_address) {
+        this.streetAddress = street_address;
+    }
+    public String getStreetAddress() {
+        return streetAddress;
     }
 
-    public void setSpecial_offer(boolean special_offer) {
-        this.special_offer = special_offer;
+    public void setSpecialOffer(boolean specialOffer) {
+        this.specialOffer = specialOffer;
     }
-
-
-    public String getStreet_address() {
-        return street_address;
-    }
-
-    public boolean isSpecial_offer() {
-        return special_offer;
+    public boolean isSpecialOffer() {
+        return specialOffer;
     }
 
     public void setCity(String city) {
         this.city = city;
     }
-
     public String getCity() {
         return city;
     }
 
-    public void setState_abr(String state_abr) {
-        this.state_abr = state_abr;
+    public void setStateAbr(String stateAbr) {
+        this.stateAbr = stateAbr;
+    }
+    public String getStateAbr() {
+        return stateAbr;
     }
 
-    public String getState_abr() {
-        return state_abr;
+    public void setStateName(String stateName) {
+        this.stateName = stateName;
+    }
+    public String getStateName() {
+        return stateName;
     }
 
-    public void setState_name(String state_name) {
-        this.state_name = state_name;
+    public void setZipCode(String zip_code) {
+        this.zipCode = zip_code;
     }
-
-    public String getState_name() {
-        return state_name;
-    }
-
-    public void setZip_code(String zip_code) {
-        this.zip_code = zip_code;
-    }
-
-    public String getZip_code() {
-        return zip_code;
+    public String getZipCode() {
+        return zipCode;
     }
 }

@@ -55,10 +55,10 @@ public class ResourceServiceTest {
             ArrayList<RealState> resultList = new ArrayList<>();
             RealState realState=new RealState();
             realState.setId(1);
-            realState.setStreet_address("55 CYRIL MAGNIN ST");
+            realState.setStreetAddress("55 CYRIL MAGNIN ST");
             realState.setCity("San Francisco");
-            realState.setState_abr("CA");
-            realState.setState_name("California");
+            realState.setStateAbr("CA");
+            realState.setStateName("California");
 
             resultList.add(realState);
 

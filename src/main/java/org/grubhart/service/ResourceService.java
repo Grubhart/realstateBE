@@ -7,8 +7,6 @@ import org.grubhart.repository.RealStateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-
 @Service
 public class ResourceService {
 
@@ -29,14 +27,20 @@ public class ResourceService {
         return rowId % 3 == 0;  //rowId never is 0
     }
 
-    public boolean isOdd(int i) {
+    private boolean isOdd(int i) {
         return i % 2 == 1;
     }
 
     public RealStateSearchResult search(String address, String specialOffer) {
-        RealStateSearchResult realStateSearchResult = buildRealStateSearchResult(realStateRepository.findAll());
 
-        return realStateSearchResult;
+        boolean offer= new Boolean(specialOffer);
+
+        if(offer)
+            return buildRealStateSearchResult(realStateRepository.findSpecialOffer("%"+address+"%"));
+        else
+            return buildRealStateSearchResult(realStateRepository.findByStateNameContainingOrStateAbrContainingOrStreetAddressContainingOrCityContainingOrZipCodeContaining(address,address,address,address,address));
+
+
     }
 
     public RealStateSearchResult buildRealStateSearchResult (Iterable<RealState> resultList) {

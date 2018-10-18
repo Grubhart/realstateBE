@@ -13,7 +13,7 @@ public class RealStateResultItem {
     public RealStateResultItem(RealState realState) {
             this.realStateId=realState.getId();
             this.address=buildAdress(realState);
-            if(realState.isSpecial_offer()){
+            if(realState.isSpecialOffer()){
                 this.specialOffer="Yes";
             }else{
                 this.specialOffer="No";
@@ -22,15 +22,15 @@ public class RealStateResultItem {
 
     private String buildAdress(RealState realState) {
         StringBuffer address= new StringBuffer();
-        address.append(realState.getStreet_address())
+        address.append(realState.getStreetAddress())
                 .append(", ")
                 .append(realState.getCity())
                 .append(", ")
-                .append(realState.getState_name())
+                .append(realState.getStateName())
                 .append(", ")
-                .append(realState.getState_abr())
+                .append(realState.getStateAbr())
                 .append(", ")
-                .append(realState.getZip_code());
+                .append(realState.getZipCode());
 
         return address.toString();
     }

@@ -13,13 +13,13 @@ public class RealStateResultItemTest {
 // 55 CYRIL MAGNIN ST PARC 55 SAN FRANCISCO, California, CA 94102-2812
         RealState realState=new RealState();
         realState.setId(1);
-        realState.setStreet_address("55 CYRIL MAGNIN ST");
+        realState.setStreetAddress("55 CYRIL MAGNIN ST");
         realState.setCity("San Francisco");
-        realState.setState_abr("CA");
-        realState.setState_name("California");
-        realState.setZip_code("23451");
+        realState.setStateAbr("CA");
+        realState.setStateName("California");
+        realState.setZipCode("23451");
 
-        realState.setSpecial_offer(false);
+        realState.setSpecialOffer(false);
 
         RealStateResultItem item = new RealStateResultItem(realState);
 
