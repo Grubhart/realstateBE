@@ -1,8 +1,12 @@
 package org.grubhart;
 
+import org.grubhart.domain.RealState;
 import org.grubhart.domain.RealStateResultItem;
+import org.grubhart.domain.RealStateSearchResult;
 import org.grubhart.service.ResourceService;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -45,4 +49,28 @@ public class ResourceServiceTest {
         assertEquals("X",row.getSpecialFlag());
     }
 
-}
+    @Test
+    public void testBuildSearchResult(){
+            ResourceService service = new ResourceService();
+            ArrayList<RealState> resultList = new ArrayList<>();
+            RealState realState=new RealState();
+            realState.setId(1);
+            realState.setStreet_address("55 CYRIL MAGNIN ST");
+            realState.setCity("San Francisco");
+            realState.setState_abr("CA");
+            realState.setState_name("California");
+
+            resultList.add(realState);
+
+            RealStateSearchResult searchResult = service.buildRealStateSearchResult(resultList);
+
+            assertEquals(1,searchResult.size());
+            assertEquals((Integer)1,searchResult.getList().get(0).getRowId());
+            assertEquals("Q",searchResult.getList().get(0).getSpecialFlag());
+
+
+
+        }
+    }
+
+

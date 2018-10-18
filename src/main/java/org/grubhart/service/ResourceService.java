@@ -1,10 +1,13 @@
 package org.grubhart.service;
 
+import org.grubhart.domain.RealState;
 import org.grubhart.domain.RealStateResultItem;
 import org.grubhart.domain.RealStateSearchResult;
 import org.grubhart.repository.RealStateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 @Service
 public class ResourceService {
@@ -31,7 +34,23 @@ public class ResourceService {
     }
 
     public RealStateSearchResult search(String address, String specialOffer) {
-        RealStateSearchResult realStateSearchResult = new RealStateSearchResult(realStateRepository.findAll());
+        RealStateSearchResult realStateSearchResult = buildRealStateSearchResult(realStateRepository.findAll());
+
         return realStateSearchResult;
+    }
+
+    public RealStateSearchResult buildRealStateSearchResult (Iterable<RealState> resultList) {
+
+        RealStateSearchResult result = new RealStateSearchResult();
+
+        for (RealState resulItem:   resultList) {
+            RealStateResultItem item = new RealStateResultItem(resulItem);
+            item.setRowId(result.size()+1);
+            setSpecialFlag(item);
+            result.add(item);
+        }
+
+        return result;
+
     }
 }

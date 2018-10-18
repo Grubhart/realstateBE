@@ -7,13 +7,8 @@ public class RealStateSearchResult {
 
     private List<RealStateResultItem> list;
 
-    public RealStateSearchResult(Iterable<RealState> resultList) {
-
-        list = new ArrayList<>();
-        for (RealState resulItem:   resultList) {
-            list.add(new RealStateResultItem(resulItem));
-        }
-
+    public RealStateSearchResult() {
+        this.list = new ArrayList<>();
     }
 
     public int size() {
@@ -26,5 +21,9 @@ public class RealStateSearchResult {
 
     public void setList(List<RealStateResultItem> list) {
         this.list = list;
+    }
+
+    public void add(RealStateResultItem item) {
+        list.add(item);
     }
 }

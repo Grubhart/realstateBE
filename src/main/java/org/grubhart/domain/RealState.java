@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 
-@Entity
+@Entity(name = "HOME")
 public class RealState {
 
     @Id
