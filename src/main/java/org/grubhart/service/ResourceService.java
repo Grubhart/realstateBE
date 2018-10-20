@@ -7,6 +7,8 @@ import org.grubhart.repository.RealStateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ResourceService {
 
@@ -44,7 +46,14 @@ public class ResourceService {
 
     }
 
-    public RealStateSearchResult buildRealStateSearchResult (Iterable<RealState> resultList) {
+    public RealStateResultItem[] searchArray(String address, String specialOffer) {
+        RealStateSearchResult result =search(address,specialOffer);
+        RealStateResultItem[] resultArray = new RealStateResultItem[result.size()];
+        resultArray = result.getList().toArray(resultArray);
+        return resultArray;
+    }
+
+    public RealStateSearchResult buildRealStateSearchResult (List<RealState> resultList) {
 
         RealStateSearchResult result = new RealStateSearchResult();
 
@@ -54,6 +63,7 @@ public class ResourceService {
             setSpecialFlag(item);
             result.add(item);
         }
+
 
         return result;
 
