@@ -36,7 +36,7 @@ public class ResourceService {
     public RealStateSearchResult search(String address, String specialOffer) {
 
 
-        boolean offer= new Boolean(specialOffer);
+        boolean offer= Boolean.parseBoolean(specialOffer);
 
         if(offer)
             return buildRealStateSearchResult(realStateRepository.findSpecialOffer("%"+address.trim()+"%"));
