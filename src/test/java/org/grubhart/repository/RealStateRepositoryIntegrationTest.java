@@ -1,6 +1,5 @@
 package org.grubhart.repository;
 
-import org.grubhart.domain.RealState;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,7 @@ public class RealStateRepositoryIntegrationTest {
         states.add("FLORIDA");
         states.add("NEW YORK");
 
-        List all = repository.findAll(RealStatesSpecs.inStates(states));
+        List all = repository.findAll(RealStatesSpecs.inStateNames(states));
 
         assertEquals(2,all.size());
 
@@ -46,7 +45,7 @@ public class RealStateRepositoryIntegrationTest {
         states.add("FLORIDA");
         states.add("NEW YORK");
 
-        List all = repository.findAll(RealStatesSpecs.likeState("FLORIDA"));
+        List all = repository.findAll(RealStatesSpecs.likeState("%ori%"));
 
         assertEquals(1,all.size());
 
