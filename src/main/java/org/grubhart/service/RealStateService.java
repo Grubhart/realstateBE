@@ -3,17 +3,23 @@ package org.grubhart.service;
 import org.grubhart.domain.RealState;
 import org.grubhart.domain.RealStateResultItem;
 import org.grubhart.domain.RealStateSearchResult;
-import org.grubhart.repository.RealStateRepository;
+import org.grubhart.repository.RealStateRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static org.grubhart.repository.RealStatesSpecs.*;
+import static org.grubhart.repository.RealStatesSpecs.likeZipCode;
+import static org.springframework.data.jpa.domain.Specification.where;
+
 @Service
 public class RealStateService {
 
+
     @Autowired
-    private RealStateRepository realStateRepository;
+    RealStateRepositoryJPA repositoryJPA;
 
     public void setSpecialFlag(RealStateResultItem row) {
         if(isOdd(row.getRowId()) && !isMultiple3(row.getRowId())){
@@ -49,11 +55,40 @@ public class RealStateService {
         boolean isSpecialOffer= Boolean.parseBoolean(specialOffer);
 
         if(isSpecialOffer) {
-            return buildRealStateSearchResult(realStateRepository.findSpecialOffer(address.trim()));
+            return findSpecialOffer(address);
         }
         else {
-            return buildRealStateSearchResult(realStateRepository.findByStateNameContainingOrStateAbrContainingOrStreetAddressContainingOrCityContainingOrZipCodeContaining(address.trim(), address.trim(), address.trim(), address.trim(), address.trim()));
+            return findNoSPecialOffer(address);
         }
+    }
+
+    protected RealStateSearchResult findNoSPecialOffer(String address) {
+
+        RealState criteria = new RealState();
+        criteria.setStateAbr("FL");
+
+        List<RealState> noSpecialOffer = repositoryJPA.findAll(
+                where(likeStateName(address)
+                        .or(likeStateAbr(address))
+                        .or(likeStreetAddress(address))
+                        .or(likeCity(address))
+                        .or(likeZipCode(address))));
+
+        return buildRealStateSearchResult(noSpecialOffer);
+    }
+
+    protected RealStateSearchResult findSpecialOffer(String address) {
+
+        List<RealState> specialOffer = repositoryJPA.findAll(
+                (where(likeStateName(address)
+                        .or(likeStateAbr(address))
+                        .or(likeStreetAddress(address))
+                        .or(likeCity(address))
+                        .or(likeZipCode(address))
+                        ).and(isSpecialOffer(true))
+                )
+        );
+        return buildRealStateSearchResult(specialOffer);
     }
 
     public RealStateSearchResult buildRealStateSearchResult (List<RealState> resultList) {
