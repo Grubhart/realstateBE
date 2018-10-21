@@ -11,7 +11,7 @@ public class RealState {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     private String streetAddress;
     private boolean specialOffer;
@@ -21,10 +21,10 @@ public class RealState {
     private String zipCode;
 
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id=id;
     }
 

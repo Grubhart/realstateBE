@@ -1,16 +1,12 @@
 package org.grubhart.service;
 
-import org.grubhart.repository.RealStateRepository;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
 import org.grubhart.domain.RealState;
 import org.grubhart.domain.RealStateResultItem;
 import org.grubhart.domain.RealStateSearchResult;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -19,10 +15,6 @@ import java.util.ArrayList;
 @RunWith(MockitoJUnitRunner.class)
 public class RealStateServiceTest {
 
-    @Mock
-    private RealStateRepository repository;
-
-    @InjectMocks
     private RealStateService service;
 
     public RealStateServiceTest() {
@@ -75,6 +67,22 @@ public class RealStateServiceTest {
 
     }
 
+    @Test
+    public void parseResultTest(){
+        RealStateSearchResult result = service.buildRealStateSearchResult(getRealStates(true));
+
+        RealStateResultItem[] realStateResultItems = service.parseResultToArray(result);
+
+        RealStateResultItem[] array = new RealStateResultItem[1];
+        RealStateResultItem item = new RealStateResultItem(getRealStates(true).get(0));
+        item.setRowId(1);
+        item.setSpecialFlag("Q");
+        array[0]=item;
+
+        assertEquals(array[0],realStateResultItems[0]);
+
+    }
+
     private ArrayList<RealState> getRealStates(boolean specialOffer) {
         ArrayList<RealState> resultList = new ArrayList<>();
         RealState realState=new RealState();
@@ -89,20 +97,6 @@ public class RealStateServiceTest {
         return resultList;
     }
 
-    @Test
-    public void testSearchArraySpecialOffer(){
-
-        ArrayList<RealState> resultList = getRealStates(true);
-        when(repository.findSpecialOffer(anyString())).thenReturn(resultList);
-
-        RealStateResultItem item = new RealStateResultItem(resultList.get(0));
-        item.setRowId(1);
-        item.setSpecialFlag("Q");
-
-        RealStateResultItem[] array = service.searchArray("55","true");
-        assertEquals(item,array[0]);
-
-    }
 }
 
 

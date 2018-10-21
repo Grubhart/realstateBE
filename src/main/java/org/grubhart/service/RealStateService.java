@@ -35,6 +35,11 @@ public class RealStateService {
 
     public RealStateResultItem[] searchArray(String address, String specialOffer) {
         RealStateSearchResult result =search(address,specialOffer);
+        RealStateResultItem[] resultArray = parseResultToArray(result);
+        return resultArray;
+    }
+
+    protected RealStateResultItem[] parseResultToArray(RealStateSearchResult result) {
         RealStateResultItem[] resultArray = new RealStateResultItem[result.size()];
         resultArray = result.getList().toArray(resultArray);
         return resultArray;

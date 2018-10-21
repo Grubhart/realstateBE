@@ -1,6 +1,8 @@
 package org.grubhart.repository;
 
 import org.grubhart.domain.RealState;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -8,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RealStateRepository extends CrudRepository<RealState,Integer> {
+public interface RealStateRepository extends CrudRepository<RealState,Integer>, JpaSpecificationExecutor {
 
     //List<RealState> findByStateNameLikeOrStateAbrLikeOrStreetAddressLikeOrCityLikeOrZipCodeLike(String stateName, String stateAbr,String streetAddress,String city,String zipCode);
 

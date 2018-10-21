@@ -19,11 +19,8 @@ public class RealStateSearchResult {
         return list;
     }
 
-    public void setList(List<RealStateResultItem> list) {
-        this.list = list;
-    }
-
     public void add(RealStateResultItem item) {
         list.add(item);
     }
+
 }
