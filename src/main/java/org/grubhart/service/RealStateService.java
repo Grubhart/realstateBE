@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ResourceService {
+public class RealStateService {
 
     @Autowired
     private RealStateRepository realStateRepository;
@@ -33,24 +33,22 @@ public class ResourceService {
         return i % 2 == 1;
     }
 
-    public RealStateSearchResult search(String address, String specialOffer) {
-
-
-        boolean offer= Boolean.parseBoolean(specialOffer);
-
-        if(offer)
-            return buildRealStateSearchResult(realStateRepository.findSpecialOffer(address.trim()));
-        else
-            return buildRealStateSearchResult(realStateRepository.findByStateNameContainingOrStateAbrContainingOrStreetAddressContainingOrCityContainingOrZipCodeContaining(address.trim(),address.trim(),address.trim(),address.trim(),address.trim()));
-
-
-    }
-
     public RealStateResultItem[] searchArray(String address, String specialOffer) {
         RealStateSearchResult result =search(address,specialOffer);
         RealStateResultItem[] resultArray = new RealStateResultItem[result.size()];
         resultArray = result.getList().toArray(resultArray);
         return resultArray;
+    }
+
+    private RealStateSearchResult search(String address, String specialOffer) {
+        boolean isSpecialOffer= Boolean.parseBoolean(specialOffer);
+
+        if(isSpecialOffer) {
+            return buildRealStateSearchResult(realStateRepository.findSpecialOffer(address.trim()));
+        }
+        else {
+            return buildRealStateSearchResult(realStateRepository.findByStateNameContainingOrStateAbrContainingOrStreetAddressContainingOrCityContainingOrZipCodeContaining(address.trim(), address.trim(), address.trim(), address.trim(), address.trim()));
+        }
     }
 
     public RealStateSearchResult buildRealStateSearchResult (List<RealState> resultList) {

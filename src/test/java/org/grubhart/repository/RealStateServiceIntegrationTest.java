@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class ResourceServiceIntegrationTest {
+public class RealStateServiceIntegrationTest {
 
     @Autowired
     private RealStateRepository repository;

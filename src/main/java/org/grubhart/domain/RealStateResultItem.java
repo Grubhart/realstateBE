@@ -63,4 +63,39 @@ public class RealStateResultItem {
     public String getSpecialOffer() {
         return specialOffer;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RealStateResultItem)) return false;
+
+        RealStateResultItem that = (RealStateResultItem) o;
+
+        if (getRealStateId() != that.getRealStateId()) return false;
+        if (!getSpecialOffer().equals(that.getSpecialOffer())) return false;
+        if (!getRowId().equals(that.getRowId())) return false;
+        if (!getSpecialFlag().equals(that.getSpecialFlag())) return false;
+        return getAddress().equals(that.getAddress());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getSpecialOffer().hashCode();
+        result = 31 * result + getRowId().hashCode();
+        result = 31 * result + getSpecialFlag().hashCode();
+        result = 31 * result + getAddress().hashCode();
+        result = 31 * result + getRealStateId();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "RealStateResultItem{" +
+                "specialOffer='" + specialOffer + '\'' +
+                ", rowId=" + rowId +
+                ", specialFlag='" + specialFlag + '\'' +
+                ", address='" + address + '\'' +
+                ", realStateId=" + realStateId +
+                '}';
+    }
 }
