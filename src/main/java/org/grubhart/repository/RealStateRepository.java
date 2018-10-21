@@ -21,11 +21,11 @@ public interface RealStateRepository extends CrudRepository<RealState,Integer> {
             "       realstate0_.zip_code as zip_code7_0_ \n" +
             "       \n" +
             "  from home realstate0_ \n" +
-            "  where (realstate0_.state_name like ?1 \n" +
-            "        or realstate0_.state_abr like ?1 \n" +
-            "        or realstate0_.street_address like ?1 \n" +
-            "        or realstate0_.city like ?1 \n" +
-            "        or realstate0_.zip_code like ?1) \n" +
+            "  where (realstate0_.state_name like %?1% \n" +
+            "        or realstate0_.state_abr like %?1% \n" +
+            "        or realstate0_.street_address like %?1% \n" +
+            "        or realstate0_.city like %?1% \n" +
+            "        or realstate0_.zip_code like %?1%) \n" +
             "        and realstate0_.special_offer is true ", nativeQuery = true)
     List<RealState> findSpecialOffer(String stateName);
 
