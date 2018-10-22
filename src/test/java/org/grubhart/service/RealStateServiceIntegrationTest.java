@@ -19,7 +19,7 @@ public class RealStateServiceIntegrationTest {
     public void testFindSpecialOffer(){
 
         RealStateSearchResult specialOffer = service.findSpecialOffer("55");
-        assertEquals(1,specialOffer.getList().size());
+        assertEquals(3,specialOffer.getList().size());
 
     }
 
@@ -27,7 +27,17 @@ public class RealStateServiceIntegrationTest {
     public void testFindNoSpecialOffer(){
 
         RealStateSearchResult specialOffer = service.findNoSPecialOffer("55");
+        assertEquals(5,specialOffer.getList().size());
+
+    }
+
+
+    @Test
+    public void testFindNoSpecialOfferSpecificState(){
+
+        RealStateSearchResult specialOffer = service.findNoSPecialOffer("55;STATEABR=FL");
         assertEquals(3,specialOffer.getList().size());
+        assertEquals(2,specialOffer.getList().get(0).getRealStateId());
 
     }
 

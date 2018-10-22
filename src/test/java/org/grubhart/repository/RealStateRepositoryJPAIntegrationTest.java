@@ -29,7 +29,7 @@ public class RealStateRepositoryJPAIntegrationTest {
 
         List all = repository.findAll(RealStatesSpecs.inStateNames(states));
 
-        assertEquals(2,all.size());
+        assertEquals(4,all.size());
 
     }
 
@@ -41,7 +41,7 @@ public class RealStateRepositoryJPAIntegrationTest {
         states.add("NEW YORK");
 
         List all = repository.findAll(RealStatesSpecs.likeStateName("%ori%"));
-        assertEquals(1,all.size());
+        assertEquals(3,all.size());
 
     }
 
@@ -62,7 +62,7 @@ public class RealStateRepositoryJPAIntegrationTest {
 
         List all = repository.findAll(RealStatesSpecs.inStateAbr(states));
 
-        assertEquals(2,all.size());
+        assertEquals(4,all.size());
 
     }
 
@@ -71,7 +71,7 @@ public class RealStateRepositoryJPAIntegrationTest {
 
         String streetAddress ="55";
         List<RealState> all = repository.findAll(RealStatesSpecs.likeStreetAddress(streetAddress));
-        assertEquals(3,all.size());
+        assertEquals(4,all.size());
 
     }
 
@@ -93,7 +93,7 @@ public class RealStateRepositoryJPAIntegrationTest {
 
         List all = repository.findAll(RealStatesSpecs.inCities(cities));
 
-        assertEquals(2,all.size());
+        assertEquals(3,all.size());
 
     }
 
@@ -101,27 +101,27 @@ public class RealStateRepositoryJPAIntegrationTest {
     public void testqueryByCriteriaLikeZipCode(){
 
         List<RealState> all = repository.findAll(RealStatesSpecs.likeZipCode("  55"));
-        assertEquals(3,all.size());
+        assertEquals(5,all.size());
 
     }
 
     @Test
     public void testqueryByCriteriaInZipCodes(){
 
-        ArrayList<String> cities = new ArrayList<>();
-        cities.add("553235");
-        cities.add("555555");
+        ArrayList<String> zipCodes = new ArrayList<>();
+        zipCodes.add("553235");
+        zipCodes.add("555555");
 
-        List all = repository.findAll(RealStatesSpecs.inZipCodes(cities));
+        List all = repository.findAll(RealStatesSpecs.inZipCodes(zipCodes));
 
-        assertEquals(2,all.size());
+        assertEquals(3,all.size());
 
     }
 
     @Test
     public void testqueryByCriteriaIsSpecialOffer(){
         List all = repository.findAll(RealStatesSpecs.isSpecialOffer(true));
-        assertEquals(1,all.size());
+        assertEquals(3,all.size());
     }
 
 }
