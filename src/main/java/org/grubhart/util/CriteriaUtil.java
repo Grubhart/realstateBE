@@ -30,7 +30,7 @@ public class CriteriaUtil {
                 result.setStreetAddress(getOpciones(parameter));
                 result.getGenericFields().remove(CriteriaRequest.STREET_ADDRESS);
             }else{
-                result.setLikeField(strings[0]);
+                result.setLikeField(parameter);
             }
         }
 
